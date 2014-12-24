@@ -3,7 +3,12 @@ html(lang="en")
   head
     title Chat Room
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    script(type="text/javascript", src="http://fb.me/react-0.12.2.js")
+    if debugMode
+      //- unminified scripts for debug mode
+      script(type="text/javascript", src="http://fb.me/react-0.12.2.js")
+    else
+      //- minified scripts for production
+      script(type="text/javascript", src="http://fb.me/react-0.12.2.min.js")
     link(href="//fonts.googleapis.com/css?family=Raleway:400,300,600", rel="stylesheet", type="text/css")
     link(rel="stylesheet", href="css/normalize.css")
     link(rel="stylesheet", href="css/skeleton.css")

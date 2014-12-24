@@ -12,6 +12,10 @@ var express = require('express'),
     MuxDemux = require('mux-demux'),
     dnode = require('dnode');
 
+function detectDebug() {
+  return process.env.NODE_ENV !== 'production';
+}
+
 var app = express();
 
 app.use(morgan('common'));
@@ -22,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.engine('jade', jade.__express);
 
 app.get('/', function(req, res) {
-  res.render('index.jade');
+  res.render('index.jade', {debugMode: detectDebug()});
 });
 
 var server = http.createServer(app);
