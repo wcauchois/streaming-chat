@@ -23,3 +23,11 @@ var rpcStream = mx.createStream('rpc');
 rpcStream.pipe(d).pipe(rpcStream);
 
 window.chatModel = chatModel;
+
+var HelloMessage = React.createClass({
+  render: function() {
+    return <div>Hello {this.props.name}</div>;
+  }
+});
+
+React.render(<HelloMessage name="Bill" />, document.getElementById('container'));

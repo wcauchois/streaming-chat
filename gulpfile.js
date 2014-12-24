@@ -1,14 +1,21 @@
 var gulp = require('gulp'),
-    browserify = require('gulp-browserify'),
+    browserify = require('browserify'),
     less = require('gulp-less'),
-    path = require('path');
+    path = require('path'),
+    reactify = require('reactify'),
+    source = require('vinyl-source-stream');
 
+// https://hacks.mozilla.org/2014/08/browserify-and-gulp-with-react/
 gulp.task('scripts', function() {
-  gulp.src('src/js/app.js')
-    .pipe(browserify({
-      insertGlobals: true
-    }))
+  browserify('./src/js/app.js')
+    .transform(reactify)
+    .bundle()
+    .pipe(source('bundle.js'))
     .pipe(gulp.dest('./build/js'));
+});
+
+gulp.task('clean', function(done) {
+  del(['build'], done);
 });
 
 gulp.task('less', function() {
@@ -19,7 +26,7 @@ gulp.task('less', function() {
 
 gulp.task('default', ['scripts', 'less']);
 
-gulp.task('watch', function() {
+gulp.task('watch', ['scripts', 'less'], function() {
   gulp.watch('src/js/**', ['scripts']);
   gulp.watch('src/less/**', ['less']);
 });
