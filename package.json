@@ -13,7 +13,11 @@
     "uniq": "^1.0.1",
     "jade": "^1.8.2",
     "morgan": "^1.5.0",
-    "config": "^1.9.0"
+    "config": "^1.9.0",
+    "underscore": "^1.7.0",
+    "append-only": "^0.2.3",
+    "mux-demux": "^3.7.9",
+    "dnode": "^1.2.0"
   },
   "devDependencies": {
     "gulp": "^3.8.10",
