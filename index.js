@@ -62,10 +62,7 @@ wss.on('connection', function(ws) {
   })).pipe(websocketStream);
 
   ws.on('close', function() {
-    websocketStream.write = function() {};
-    modelStream.end();
-    rpcStream.end();
-    mx.end();
+    websocketStream.emit('close');
     util.log('Disconnected WebSocket');
   });
 });
