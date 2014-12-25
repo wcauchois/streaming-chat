@@ -56,6 +56,9 @@ var ChatList = React.createClass({
   }
 });
 
+var MAX_MESSAGE_LEN = 400;
+var MAX_NICK_LEN = 30;
+
 var InputSection = React.createClass({
   getInitialState: function() {
     return {
@@ -75,8 +78,8 @@ var InputSection = React.createClass({
 
   doSend: function() {
     this.props.sendMessage({
-      message: this.state.value,
-      nick: this.state.nickValue
+      message: this.state.value.substring(0, MAX_MESSAGE_LEN),
+      nick: this.state.nickValue.substring(0, MAX_NICK_LEN)
     });
     this.setState({value: ''});
   },
