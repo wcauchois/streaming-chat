@@ -27,13 +27,13 @@ chatModel.on('item', function(item) {
   console.log(item);
 });
 
-var HelloMessage = React.createClass({
-  render: function() {
-    return <div>Hello {this.props.name}</div>;
-  }
-});
-
 var ChatList = React.createClass({
+  componentDidUpdate: function() {
+    var node = this.getDOMNode();
+    var messageList = node.querySelector('.message-list');
+    messageList.scrollTop = messageList.scrollHeight;
+  },
+
   render: function() {
     return (
       <div>
